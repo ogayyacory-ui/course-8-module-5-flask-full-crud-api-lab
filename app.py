@@ -17,6 +17,18 @@ events = [
     Event(2, "Python Workshop")
 ]
 
+
+# Welcome route
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({"message": "Welcome to the Events API"}), 200
+
+
+# List events
+@app.route("/events", methods=["GET"])
+def list_events():
+    return jsonify([e.to_dict() for e in events]), 200
+
 # Create a new event from JSON input
 @app.route("/events", methods=["POST"])
 def create_event():
@@ -58,8 +70,8 @@ def update_event(event_id):
 def delete_event(event_id):
     for i, e in enumerate(events):
         if e.id == event_id:
-            deleted = events.pop(i)
-            return jsonify({"message": "Event deleted", "event": deleted.to_dict()}), 200
+            events.pop(i)
+            return "", 204
 
     return jsonify({"error": "Event not found"}), 404
 
