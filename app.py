@@ -45,7 +45,6 @@ def create_event():
     events.append(event)
     return jsonify(event.to_dict()), 201
 
-# TODO: Task 1 - Define the Problem
 # Update the title of an existing event
 @app.route("/events/<int:event_id>", methods=["PATCH"])
 def update_event(event_id):
@@ -64,7 +63,6 @@ def update_event(event_id):
 
     return jsonify({"error": "Event not found"}), 404
 
-# TODO: Task 1 - Define the Problem
 # Remove an event from the list
 @app.route("/events/<int:event_id>", methods=["DELETE"])
 def delete_event(event_id):
